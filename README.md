@@ -16,6 +16,7 @@ This repository contains a fully validated simulation environment for **Asymmetr
 - **Memory Poisoning**: Degrades attacker confidence through deceptive signals
 - **Information Asymmetry**: Leverages incomplete attacker knowledge for cheap deception
 - **Statistical Rigor**: 1,000+ episode power analysis with 95% confidence intervals
+- **Fully Configurable**: Version 3.0 introduces advanced parameter control for comprehensive sensitivity analysis
 
 ---
 
@@ -29,7 +30,7 @@ This repository contains a fully validated simulation environment for **Asymmetr
 
 ```bash
 # Install required packages
-pip install numpy scipy networkx matplotlib
+pip install numpy scipy networkx matplotlib pandas
 
 # Or use requirements.txt
 pip install -r requirements.txt
@@ -47,8 +48,11 @@ python acp_corrected_final.py
 # Standard power analysis (1,000 episodes, ~3 seconds)
 python acp_parallel_power_analysis.py
 
-# Publication quality (10,000 episodes, ~30 seconds)
-python acp_parallel_power_analysis.py --num-episodes 10000
+# Version 3.0: Fully configurable simulation
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --num-episodes 10000
+
+# Version 3.0: Automated parameter sweep
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py
 ```
 
 ---
@@ -72,10 +76,17 @@ python acp_parallel_power_analysis.py --num-episodes 10000
 ## 📁 Repository Structure
 
 ```
-v2-Claude-WindowsSetup-1000-scaled-agents-ACP-simulation/
-├── Core Implementation
+.
+├── Core Implementation (v2)
 │   ├── acp_corrected_final.py              # Base simulation (100 episodes)
 │   └── acp_parallel_power_analysis.py      # Parallel scaling (1,000+ episodes)
+│
+├── Version 3.0 - Fully Configurable
+│   └── v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/
+│       ├── acp_fully_configurable.py       # Advanced parameter control
+│       ├── parameter_sweep.py              # Automated sensitivity analysis
+│       ├── COMPREHENSIVE_GUIDE.md          # Detailed parameter documentation
+│       └── QUICK_REFERENCE.md              # Quick command reference
 │
 ├── Setup & Installation
 │   ├── requirements.txt                    # Python dependencies
@@ -97,49 +108,57 @@ v2-Claude-WindowsSetup-1000-scaled-agents-ACP-simulation/
 
 ---
 
-## 🔬 Thesis Claims Validated
+## 🎯 Version 3.0 Features
 
-### ✅ Claim 1: Reward Delta
-**ACP significantly outperforms traditional pessimistic defense**
-- ACP Mean: 1924.07 ± 288.91
-- Traditional Mean: 803.91 ± 33.55
-- Improvement: 139.3% (p < 10⁻¹⁶)
+### Advanced Parameter Control
+Version 3.0 introduces comprehensive parameter configuration for sensitivity analysis:
 
-### ✅ Claim 2: Restore Node Pathology
-**Traditional defense overuses expensive RESTORE_NODE actions**
-- Traditional usage: 41.85% (matches thesis claim)
-- ACP usage: Near 0% (strategic avoidance)
-- Cost savings: 6.0 points per avoided action
+| Parameter | Range | Default | Description |
+|-----------|-------|---------|-------------|
+| `--acp-strength` | 0.0-1.0 | 0.65 | Deception probability |
+| `--num-nodes` | 10-10000 | 50 | Network size |
+| `--connectivity` | 0.0-1.0 | 0.6 | Network density |
+| `--learning-rate` | 0.1-5.0 | 1.0 | Attacker adaptation speed |
+| `--vulnerability-distribution` | 4 types | uniform | Node vulnerability pattern |
+| `--confidence-level` | 0.90/0.95/0.99 | 0.95 | Statistical confidence |
+| `--bootstrap-samples` | 1000-100000 | 10000 | Bootstrap iterations |
 
-### ✅ Claim 3: Cognitive Latency Arbitrage
-**ACP exploits attacker processing delays**
-- 10,847 successful latency exploitations
-- Average 2.17 exploitations per episode
-- Strategic timing during 0.3-0.8 time unit windows
+### Usage Examples
 
-### ✅ Claim 4: IBLT Learning Disruption
-**ACP poisons attacker memory confidence**
-- Attacker confidence vs ACP: 0.647
-- Attacker confidence vs Traditional: 0.881
-- Degradation: 26.5% (exceeds 15% threshold)
-
----
-
-## 🎯 Usage Examples
-
-### Command-Line Options
+#### Basic Configuration
 ```bash
-# Specify number of episodes
-python acp_parallel_power_analysis.py --num-episodes 5000
+# Test different ACP strengths
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --acp-strength 0.3 --num-episodes 5000
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --acp-strength 0.9 --num-episodes 5000
+```
 
-# Use specific number of CPU cores
-python acp_parallel_power_analysis.py --cores 8
+#### Network Scaling
+```bash
+# Large network simulation
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --num-nodes 500 --connectivity 0.4 --num-episodes 2000
+```
 
-# Save results to custom directory
-python acp_parallel_power_analysis.py --output "./results"
+#### Attacker Adaptation
+```bash
+# Test against fast-learning attackers
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --learning-rate 2.0 --num-episodes 5000
+```
 
-# Combine options
-python acp_parallel_power_analysis.py --num-episodes 10000 --cores 4 --output "./output"
+#### Vulnerability Distributions
+```bash
+# Different security postures
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --vulnerability-distribution bimodal --num-episodes 5000
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --vulnerability-distribution exponential --num-episodes 5000
+```
+
+#### Automated Parameter Sweep
+```bash
+# Full sensitivity analysis
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py
+
+# Single parameter sweep
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py acp_strength
+python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py num_nodes
 ```
 
 ### Performance Scaling
@@ -197,6 +216,12 @@ python acp_parallel_power_analysis.py --num-episodes 10000 --cores 4 --output ".
 - Multi-phase execution timeline
 - Comprehensive metrics tracking
 
+### Version 3.0 Enhancements
+- **ConfigurablePessimisticDefender**: Traditional defense with vulnerability distributions
+- **ConfigurableACPDefender**: ACP with adjustable deception strength
+- **ConfigurableAttacker**: Variable learning rates and adaptation speeds
+- **ConfigurableNetworkEnvironment**: Scalable network generation (Erdős-Rényi and Barabási-Albert models)
+
 ---
 
 ## 📈 Output Analysis
@@ -232,22 +257,22 @@ python acp_parallel_power_analysis.py --num-episodes 10000 --cores 4 --output ".
 **ModuleNotFoundError**
 ```bash
 # Install missing packages
-pip install numpy scipy networkx matplotlib
+pip install numpy scipy networkx matplotlib pandas
 
 # Or use Python module
-python -m pip install numpy scipy networkx matplotlib
+python -m pip install numpy scipy networkx matplotlib pandas
 ```
 
 **Permission Denied**
 ```bash
 # Install for current user only
-pip install --user numpy scipy networkx matplotlib
+pip install --user numpy scipy networkx matplotlib pandas
 ```
 
 **Multiple Python Versions**
 ```bash
 # Use specific Python version
-python3 -m pip install numpy scipy networkx matplotlib
+python3 -m pip install numpy scipy networkx matplotlib pandas
 python3 acp_parallel_power_analysis.py
 ```
 
@@ -267,7 +292,7 @@ If you use this simulation in your research, please cite:
   author={dyb},
   year={2025},
   month={December},
-  version={2.0},
+  version={3.0},
   url={https://github.com/yourusername/acp-simulation}
 }
 ```
@@ -288,10 +313,11 @@ For issues, questions, or contributions:
 1. Check [`INSTALLATION_FIX.md`](INSTALLATION_FIX.md) for common problems
 2. Review [`SETUP_GUIDE.md`](SETUP_GUIDE.md) for detailed instructions
 3. Run `python check_setup.py` to verify your installation
+4. See [`v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/COMPREHENSIVE_GUIDE.md`](v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/COMPREHENSIVE_GUIDE.md) for v3.0 parameter documentation
 
 ---
 
-**Version**: 2.0  
+**Version**: 3.0  
 **Date**: December 09, 2025  
 **Status**: ✅ Production Ready  
 **Platform**: Cross-platform (Windows, Linux, macOS)  
