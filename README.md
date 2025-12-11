@@ -357,7 +357,7 @@ If you use this playbook in research or professional work, please cite:
 
 **Made with ❤️ for the developer community**
 
-**Version:** 3.0.0
+**Version:** 3.1.0
 **Release Date:** December 2025
 **Last Updated:** 2025-12-11
 
