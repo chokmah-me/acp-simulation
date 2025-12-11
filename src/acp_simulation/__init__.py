@@ -11,10 +11,10 @@ This package provides:
 - Experiment runners and configuration management
 - Statistical analysis and visualization tools
 
-Version: 3.1.0
+Version: 4.0.0
 """
 
-__version__ = "3.1.0"
+__version__ = "4.0.0"
 __author__ = "dyb"
 
 from .core import (

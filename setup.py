@@ -12,7 +12,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
     name="acp-simulation",
-    version="3.1.0",
+    version="4.0.0",
     author="dyb",
     description="Asymmetric Cognitive Projection (ACP) Simulation for cybersecurity defense validation",
     long_description=long_description,
