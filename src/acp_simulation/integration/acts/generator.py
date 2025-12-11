@@ -91,22 +91,78 @@ class ACTSGenerator:
             if output_file is None:
                 output_file = tempfile.mktemp(suffix='.csv')
             
-            # Run ACTS - ACTS 3.1 syntax
+            # Run ACTS - ACTS 3.1 syntax: java [options] -jar jarName <inputFileName> [outputFileName]
             cmd = [
-                'java', '-jar', str(self.acts_jar_path),
-                '-p', input_file,
-                '-o', output_file,
-                '-t', str(strength),
-                '-a', algorithm
+                'java',
+                f'-Ddoi={strength}',
+                f'-Dalgo={algorithm}',
+                '-Doutput=csv',  # Output in CSV format for easy parsing
+                '-jar', str(self.acts_jar_path),
+                input_file,
+                output_file
             ]
+            
+            # Debug: print command
+            print(f"Running ACTS command: {' '.join(cmd)}")
             
             result = subprocess.run(cmd, capture_output=True, text=True)
             
             if result.returncode != 0:
                 raise RuntimeError(f"ACTS failed: {result.stderr}")
             
-            # Read covering array
-            covering_array = pd.read_csv(output_file)
+            # Read covering array - ACTS CSV format
+            try:
+                # Try reading as CSV first
+                covering_array = pd.read_csv(output_file)
+            except pd.errors.ParserError:
+                # If that fails, try reading as plain text and split
+                with open(output_file, 'r') as f:
+                    lines = f.readlines()
+                
+                # Find the header line (starts with "Test Case" or similar)
+                header_line = None
+                data_start = 0
+                for i, line in enumerate(lines):
+                    if 'Test Case' in line or 'p1' in line:
+                        header_line = line.strip()
+                        data_start = i + 1
+                        break
+                
+                if header_line is None:
+                    # Try to parse as simple CSV without header
+                    data = []
+                    for line in lines:
+                        if line.strip() and not line.startswith('#'):
+                            data.append(line.strip().split(','))
+                    
+                    if data:
+                        covering_array = pd.DataFrame(data[1:], columns=data[0])
+                    else:
+                        raise RuntimeError("Could not parse ACTS output")
+                else:
+                    # Parse with header
+                    data = []
+                    for line in lines[data_start:]:
+                        if line.strip() and not line.startswith('#'):
+                            data.append(line.strip().split(','))
+                    
+                    covering_array = pd.DataFrame(data, columns=header_line.split(','))
+            
+            # Clean up the DataFrame (remove any empty rows/columns)
+            covering_array = covering_array.dropna(how='all')
+            if len(covering_array) == 0:
+                raise RuntimeError("ACTS produced empty covering array")
+            
+            # Convert column names to match parameter names
+            covering_array.columns = [param.name for param in parameters]
+            
+            # Convert data types based on parameter types
+            for param in parameters:
+                if param.param_type == "int":
+                    covering_array[param.name] = pd.to_numeric(covering_array[param.name], errors='coerce').astype('Int64')
+                elif param.param_type == "double":
+                    covering_array[param.name] = pd.to_numeric(covering_array[param.name], errors='coerce').astype(float)
+                # enum and boolean stay as strings
             
             print(f"✅ Generated covering array: {len(covering_array)} tests")
             print(f"   Strength: {strength}-way")
