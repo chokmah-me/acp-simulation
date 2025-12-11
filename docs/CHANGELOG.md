@@ -316,6 +316,66 @@ v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/
 
 ---
 
-**Author**: dyb  
-**Last Updated**: December 09, 2025  
+**Author**: dyb
+**Last Updated**: December 11, 2025
 **Current Version**: 3.0
+
+---
+
+## Version 3.0 - Claude Code Integration (December 11, 2025)
+
+### 🤖 AI-Assisted Development Enhancement
+
+#### Claude Code Playbook v3.0.0 Integration
+- **Complete workflow system** added to project
+- **Token-efficient AI collaboration** - 67% reduction in conversation turns
+- **Six specialized refactoring workflows** for systematic code improvement
+- **Modern architecture patterns** documentation included
+
+#### New Files Added
+```
+.claude/
+├── settings.local.json
+└── skills/
+    └── refactoring/
+        ├── SKILL.md (5,639 lines)
+        ├── workflows/
+        │   ├── triage.md (6,211 lines) - Tech debt analysis
+        │   ├── extract.md (456 lines) - Function extraction
+        │   ├── modernize.md (481 lines) - Pattern updates
+        │   ├── qnew.md (4,772 lines) - Session initialization
+        │   ├── qplan.md (518 lines) - Plan validation
+        │   ├── qcode.md (740 lines) - Batch implementation
+        │   └── catchup.md (5,639 lines) - Context restoration
+        └── knowledge/
+            ├── typescript-style.md (7,111 lines) - Modern TS patterns
+            └── architecture-patterns.md (10,792 lines) - Architecture guides
+CLAUDE.md (315 lines) - Project constitution and guidelines
+```
+
+#### Integration Benefits
+- **Systematic refactoring** with proven workflows
+- **Budget-aware development** optimized for Claude Pro limits
+- **Quality gates** - Type checks, tests, linting requirements
+- **Session management** protocols for sustained productivity
+- **Architecture modernization** guidance for future development
+
+#### Quick Start Commands
+```bash
+# Initialize AI-assisted session
+/clear
+claude skills refactoring qnew
+
+# Find technical debt hotspots
+claude skills refactoring triage
+
+# Extract and modernize code
+claude skills refactoring extract
+claude skills refactoring modernize
+```
+
+**Impact**: Transforms the ACP project into an AI-native codebase with structured collaboration patterns, enabling more efficient development and maintenance.
+
+---
+
+**Previous Versions**
