@@ -91,13 +91,13 @@ class ACTSGenerator:
             if output_file is None:
                 output_file = tempfile.mktemp(suffix='.csv')
             
-            # Run ACTS
+            # Run ACTS - ACTS 3.1 syntax
             cmd = [
                 'java', '-jar', str(self.acts_jar_path),
-                f'-Ddoi={strength}',
-                f'-Dalgo={algorithm}',
-                f'-o', output_file,
-                input_file
+                '-p', input_file,
+                '-o', output_file,
+                '-t', str(strength),
+                '-a', algorithm
             ]
             
             result = subprocess.run(cmd, capture_output=True, text=True)
