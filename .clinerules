@@ -1,0 +1,10 @@
+# 🕸️ Insight Mesh Protocol v4.0
+
+## 🛑 CORE CONSTRAINTS
+1. **18-STEP LIMIT:** If a task exceeds 18 tool calls, STOP and ask for a sub-task breakdown.
+2. **NO RAW DUMPS:** Output *Specifications* or *Diffs* only.
+3. **CONTEXT ORDER:** Read `CONTEXT.md` immediately upon starting.
+
+## 🔄 The "Boomerang" Handoff
+* **Orchestrator:** Expect a "Boomerang" return (Summary + Test Result).
+* **Code Node:** Return results immediately. Do not hold context open.
