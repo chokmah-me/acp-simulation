@@ -1,0 +1,174 @@
+ACP Simulation - Claude Code Playbook Structure
+================================================
+
+Root Level
+──────────
+/mnt/project/
+├── README.md                    # Main entry point with quick start
+├── CONTEXT.md                   # Project-specific operational context
+│
+└── .claude/                     # Claude Code Playbook directory
+    ├── README.md                # Playbook overview
+    ├── GETTING_STARTED.md       # Detailed setup guide
+    ├── WORKFLOW_GUIDE.md        # Comprehensive workflow docs
+    ├── IMPROVEMENTS.md          # Summary of improvements made
+    ├── STRUCTURE.txt            # This file - structure diagram
+    │
+    └── skills/                  # Skills directory
+        ├── README.md            # ⭐ Skills navigation hub - START HERE
+        │
+        ├── python-scientific/   # Scientific computing skill
+        │   └── SKILL.md         # NumPy patterns, reproducibility,
+        │                        # vectorization, type hints, testing,
+        │                        # profiling, ACP-specific patterns
+        │
+        └── refactoring/         # Code refactoring skill
+            ├── SKILL.md         # Refactoring overview and patterns
+            │
+            ├── knowledge/       # Reference materials (prepared for future)
+            │   └── (empty - ready for architecture patterns)
+            │
+            └── workflows/       # Executable workflows
+                ├── triage.md    # Find technical debt hotspots
+                ├── extract.md   # Extract code to modules
+                ├── qnew.md      # Start new session
+                ├── qplan.md     # Validate refactoring plan
+                ├── qcode.md     # Full implementation
+                └── catchup.md   # Resume after /clear
+
+
+Quick Navigation Guide
+======================
+
+For Beginners:
+    1. Start → README.md
+    2. Navigate → .claude/skills/README.md
+    3. Initialize → .claude/skills/refactoring/workflows/qnew.md
+
+For Scientific Computing (ACP simulation work):
+    → .claude/skills/python-scientific/SKILL.md
+
+For Refactoring (NetworkEnvironment decomposition):
+    → .claude/skills/refactoring/SKILL.md
+    → .claude/skills/refactoring/workflows/
+
+Session Management:
+    Every 5-7 prompts:
+    1. /cost
+    2. /clear
+    3. view .claude/skills/refactoring/workflows/catchup.md
+
+
+Key Files by Purpose
+====================
+
+Navigation Hubs:
+    /mnt/project/README.md                  # Project entry
+    .claude/skills/README.md                # Skills selection
+
+Skills:
+    .claude/skills/python-scientific/SKILL.md    # Scientific patterns
+    .claude/skills/refactoring/SKILL.md          # Refactoring patterns
+
+Workflows:
+    .claude/skills/refactoring/workflows/triage.md    # Analyze debt
+    .claude/skills/refactoring/workflows/extract.md   # Extract components
+    .claude/skills/refactoring/workflows/qnew.md      # Start session
+    .claude/skills/refactoring/workflows/qplan.md     # Validate plan
+    .claude/skills/refactoring/workflows/qcode.md     # Implement
+    .claude/skills/refactoring/workflows/catchup.md   # Resume
+
+Documentation:
+    .claude/GETTING_STARTED.md              # Setup guide
+    .claude/WORKFLOW_GUIDE.md               # Workflow details
+    .claude/IMPROVEMENTS.md                 # Change summary
+
+
+Token Budget Reference
+======================
+
+Claude Pro Limits:
+    - 10-40 prompts per 5-hour window
+    - ~44,000 tokens total capacity
+
+Typical Session (24K tokens = 54% of budget):
+    Session start (qnew):           2K
+    Load Python scientific:         1K
+    Triage analysis:                2K
+    Plan validation (qplan):        3K
+    Extract component #1:           5K
+    Context reset (catchup):        1K
+    Extract component #2:           5K
+    Add type hints & docs:          3K
+    Testing & validation:           2K
+    ───────────────────────────────────
+    Total:                         24K
+
+Reset Protocol:
+    Every 5-7 prompts → /cost → /clear → catchup
+
+
+Validation Requirements
+=======================
+
+Before ANY commit, ALL must pass:
+
+    1. Type checking:
+       mypy src/ --strict
+
+    2. Linting:
+       flake8 src/ --max-line-length=100
+
+    3. Tests:
+       pytest tests/ -v
+
+    4. Reproducibility (ACP specific):
+       python scripts/verify_reproducibility.py
+
+If ANY fail → STOP → Fix → Then proceed
+
+
+ACP Simulation Priorities
+==========================
+
+Based on technical debt analysis:
+
+    Priority 1: NetworkEnvironment class (330 lines)
+        - God object with multiple responsibilities
+        - Skills: extract + python-scientific
+        - Targets: GraphTopology, NodeStateManager, ActionExecutor
+
+    Priority 2: run_corrected_experiment() (186 lines)
+        - Monolithic orchestration function
+        - Skills: extract + configuration patterns
+        - Target: Focused orchestration components
+
+    Priority 3: Agent decision logic
+        - Performance bottleneck
+        - Skill: python-scientific
+        - Target: Vectorized batch processing
+
+
+File Counts
+===========
+
+.claude/ directory:
+    - 4 documentation files
+    - 2 skills
+    - 6 workflows
+    - Total: 12 organized files
+
+Root directory (cleaned up):
+    - 2 files (README.md, CONTEXT.md)
+    - Previously: 12 files (10 moved to .claude/)
+
+
+Version Information
+===================
+
+Playbook Version: 4.0.0
+Date: December 18, 2024
+Project: ACP Simulation
+Status: ✅ Configured and Ready
+
+Last Updated: 2024-12-18

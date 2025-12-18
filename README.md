@@ -1,394 +1,228 @@
-# 🛡️ Asymmetric Cognitive Projection (ACP) Simulation
+# ACP Simulation - Claude Code Playbook
 
-**Beyond Paralysis: Robust Defense Against Cognitive Attackers**
-
-A comprehensive simulation framework for evaluating strategic cybersecurity defense mechanisms against instance-based learning attackers.
-
----
-
-## 📋 Overview
-
-This repository contains a fully validated simulation environment for **Asymmetric Cognitive Projection (ACP)**, a novel cybersecurity defense strategy that exploits information asymmetry and cognitive latency to disrupt attacker learning processes. The implementation provides publication-quality statistical validation with power analysis, confidence intervals, and bootstrap validation.
-
-### Key Innovations
-
-- **Cognitive Latency Arbitrage**: Exploits attacker processing delays for strategic advantage
-- **Memory Poisoning**: Degrades attacker confidence through deceptive signals
-- **Information Asymmetry**: Leverages incomplete attacker knowledge for cheap deception
-- **Statistical Rigor**: 1,000+ episode power analysis with 95% confidence intervals
-- **Fully Configurable**: Version 3.0 introduces advanced parameter control for comprehensive sensitivity analysis
-
----
+This project includes the Claude Code Playbook v4.0.0 for AI-assisted development.
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8+ (recommended: 3.11+)
-- pip package manager
-
-### Installation
+### First Time Setup
 
 ```bash
-# Install required packages
-pip install numpy scipy networkx matplotlib pandas
+# 1. Start a new session
+/clear
 
-# Or use requirements.txt
-pip install -r requirements.txt
+# 2. Load the session initialization workflow
+view .claude/skills/refactoring/workflows/qnew.md
 
-# Verify installation
-python check_setup.py
+# 3. Choose your skill based on work type:
+
+# For simulation/numerical work:
+view .claude/skills/python-scientific/SKILL.md
+
+# For refactoring/architecture:
+view .claude/skills/refactoring/SKILL.md
 ```
 
-### Running the Simulation
+### Session Management Protocol
+
+**Every 5-7 prompts, execute:**
+```bash
+/cost                                          # Check token usage
+/clear                                         # Reset context
+view .claude/skills/refactoring/workflows/catchup.md    # Restore context
+```
+
+## 📁 Directory Structure
+
+```
+.claude/
+├── README.md                  # Playbook overview
+├── GETTING_STARTED.md         # Detailed setup guide
+├── WORKFLOW_GUIDE.md          # Comprehensive workflow documentation
+└── skills/
+    ├── README.md              # Skills navigation hub ⭐ START HERE
+    ├── python-scientific/     # Scientific computing patterns
+    │   └── SKILL.md          # NumPy, reproducibility, performance
+    └── refactoring/          # Code refactoring workflows
+        ├── SKILL.md          # Refactoring skill overview
+        └── workflows/        # Executable workflows
+            ├── triage.md     # Find technical debt hotspots
+            ├── extract.md    # Extract components
+            ├── qnew.md       # Start new session
+            ├── qplan.md      # Validate plan
+            ├── qcode.md      # Execute implementation
+            └── catchup.md    # Resume after /clear
+```
+
+## 🎯 Common Workflows
+
+### 1. Start New Session
+```bash
+/clear
+view .claude/skills/refactoring/workflows/qnew.md
+```
+
+### 2. Find Technical Debt
+```bash
+view .claude/skills/refactoring/workflows/triage.md
+```
+
+### 3. Extract Component (e.g., from NetworkEnvironment)
+```bash
+view .claude/skills/refactoring/workflows/extract.md
+```
+
+### 4. Optimize Simulation Performance
+```bash
+view .claude/skills/python-scientific/SKILL.md
+# Focus on vectorization and profiling sections
+```
+
+### 5. Resume After Context Clear
+```bash
+/clear
+view .claude/skills/refactoring/workflows/catchup.md
+```
+
+## 🧪 Validation Requirements
+
+**Before ANY commit, ALL checks must pass:**
 
 ```bash
-# Quick test (100 episodes, ~1 second)
-python acp_corrected_final.py
+# Type checking (if using mypy)
+mypy src/ --strict
 
-# Standard power analysis (1,000 episodes, ~3 seconds)
-python acp_parallel_power_analysis.py
+# Linting
+flake8 src/ --max-line-length=100
 
-# Version 3.0: Fully configurable simulation
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --num-episodes 10000
+# Tests
+pytest tests/ -v
 
-# Version 3.0: Automated parameter sweep
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py
+# Reproducibility (for ACP simulation)
+python scripts/verify_reproducibility.py
 ```
 
----
+**If ANY validation fails: STOP. Fix the issue first.**
 
-## 📊 Expected Results
+## 📊 Token Budget Awareness
 
-### Statistical Validation
-- **Achieved Power**: 100.0% (exceeds 95% threshold)
-- **Effect Size**: Cohen's d = 5.447 (extremely large effect)
-- **Statistical Significance**: p < 10⁻¹⁶ (highly significant)
-- **Sample Size**: 500+ episodes per group (16.7x above minimum)
+### Claude Pro Limits
+- **10-40 prompts** per 5-hour window
+- **~44,000 tokens** total capacity
 
-### Performance Metrics
-- **Reward Improvement**: 139.3% over traditional defense
-- **Attacker Confidence Degradation**: 26.5%
-- **Cognitive Latency Exploitations**: 10,847 successful arbitrages
-- **RESTORE_NODE Reduction**: From 41.85% to near 0%
-
----
-
-## 📁 Repository Structure
-
+### Typical Session (54% of budget)
 ```
-.
-├── Core Implementation (v2)
-│   ├── acp_corrected_final.py              # Base simulation (100 episodes)
-│   └── acp_parallel_power_analysis.py      # Parallel scaling (1,000+ episodes)
-│
-├── Version 3.0 - Fully Configurable
-│   └── v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/
-│       ├── acp_fully_configurable.py       # Advanced parameter control
-│       ├── parameter_sweep.py              # Automated sensitivity analysis
-│       ├── COMPREHENSIVE_GUIDE.md          # Detailed parameter documentation
-│       └── QUICK_REFERENCE.md              # Quick command reference
-│
-├── Setup & Installation
-│   ├── requirements.txt                    # Python dependencies
-│   ├── check_setup.py                      # Installation verification
-│   ├── SETUP_GUIDE.md                      # Comprehensive setup instructions
-│   ├── QUICK_START_WINDOWS.md             # Windows-specific guide
-│   └── INSTALLATION_FIX.md                # Troubleshooting guide
-│
-├── Documentation
-│   ├── ACP_VERIFICATION_AND_SCALING.md     # Code review and scaling strategies
-│   ├── SCALING_GUIDE.md                    # Performance optimization
-│   ├── FINAL_SUMMARY.md                    # Implementation overview
-│   └── POWER_ANALYSIS_SUMMARY.md          # Statistical results analysis
-│
-└── Output (Generated)
-    ├── power_analysis_results.png          # Publication-quality visualization
-    └── power_analysis_results.pkl          # Complete results package
+Session start:           2K tokens
+Load skill:              1K tokens
+Triage:                  2K tokens
+Plan:                    3K tokens
+Extract #1:              5K tokens
+/clear + catchup:        1K tokens
+Extract #2:              5K tokens
+Documentation:           3K tokens
+Testing:                 2K tokens
+──────────────────────────────────
+Total:                  24K tokens
 ```
 
----
-
-## 🎯 Version 4.0 Features - NIST ACTS/CCM Integration
-
-### Comprehensive Validation via Combinatorial Testing
-
-Version 4.0 introduces **NIST ACTS/CCM integration** for publication-quality comprehensive validation:
-
-| Feature | Description | Benefit |
-|---------|-------------|---------|
-| **NIST ACTS Integration** | Advanced Combinatorial Testing System | 99.4% test reduction (85 vs 13,824) |
-| **NIST CCM Integration** | Combinatorial Coverage Measurement | 100% 3-way parameter coverage |
-| **Automated Workflow** | Complete validation pipeline | 2-hour comprehensive testing |
-| **Thesis-Ready Results** | Publication-quality output | Ready for chapter inclusion |
-
-### Quick Start - Combinatorial Validation
-
-```bash
-# Install ACTS and CCM tools (see docs/ACTS_INTEGRATION.md)
-# Then run complete validation:
-python scripts/run_acts.py \
-    --strength 3 \
-    --acts-jar ./tools/acts.jar \
-    --ccm-jar ./tools/ccm.jar \
-    --output-dir ./validation_results
-```
-
-### Validation Metrics Achieved
-- ✅ **100% test success rate** (85/85 configurations)
-- ✅ **42.3% average improvement** (ACP vs Traditional)
-- ✅ **p < 10⁻¹⁶** (highly significant)
-- ✅ **Cohen's d = 5.447** (extremely large effect)
-- ✅ **100% 3-way coverage** (all parameter interactions)
-
-### Version 3.0 Features (Continued)
-
-### Advanced Parameter Control
-Version 3.0 introduces comprehensive parameter configuration for sensitivity analysis:
-
-| Parameter | Range | Default | Description |
-|-----------|-------|---------|-------------|
-| `--acp-strength` | 0.0-1.0 | 0.65 | Deception probability |
-| `--num-nodes` | 10-10000 | 50 | Network size |
-| `--connectivity` | 0.0-1.0 | 0.6 | Network density |
-| `--learning-rate` | 0.1-5.0 | 1.0 | Attacker adaptation speed |
-| `--vulnerability-distribution` | 4 types | uniform | Node vulnerability pattern |
-| `--confidence-level` | 0.90/0.95/0.99 | 0.95 | Statistical confidence |
-| `--bootstrap-samples` | 1000-100000 | 10000 | Bootstrap iterations |
-
-### Usage Examples
-
-#### Basic Configuration
-```bash
-# Test different ACP strengths
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --acp-strength 0.3 --num-episodes 5000
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --acp-strength 0.9 --num-episodes 5000
-```
-
-#### Network Scaling
-```bash
-# Large network simulation
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --num-nodes 500 --connectivity 0.4 --num-episodes 2000
-```
-
-#### Attacker Adaptation
-```bash
-# Test against fast-learning attackers
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --learning-rate 2.0 --num-episodes 5000
-```
-
-#### Vulnerability Distributions
-```bash
-# Different security postures
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --vulnerability-distribution bimodal --num-episodes 5000
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/acp_fully_configurable.py --vulnerability-distribution exponential --num-episodes 5000
-```
-
-#### Automated Parameter Sweep
-```bash
-# Full sensitivity analysis
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py
-
-# Single parameter sweep
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py acp_strength
-python v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/parameter_sweep.py num_nodes
-```
-
-### Performance Scaling
-| Episodes | Runtime | Speed | Use Case |
-|----------|---------|-------|----------|
-| 100 | ~1s | 250 ep/s | Quick test |
-| 1,000 | ~3s | 322 ep/s | Standard analysis |
-| 10,000 | ~30s | 322 ep/s | Publication quality |
-| 100,000 | ~5min | 333 ep/s | Comprehensive validation |
-
----
-
-## 🏆 Publication Readiness
-
-### Quality Metrics
-- ✅ Adequate sample size (500+ per group)
-- ✅ High statistical power (100%)
-- ✅ Large effect size (d > 0.8)
-- ✅ Confidence intervals reported
-- ✅ Bootstrap validation (10,000 samples)
-- ✅ Reproducible methods
-- ✅ Publication-quality figures (300 DPI)
-
-### Conference/Journal Targets
-- **Top-tier conferences**: IEEE S&P, USENIX Security, CCS, NDSS
-- **Premier journals**: IEEE TDSC, ACM TOPS, Computers & Security
-- **Thesis defense**: Ready for submission
-
----
-
-## 🔧 Technical Implementation
-
-### Core Components
-
-**CognitiveAttacker**
-- Instance-Based Learning Theory (IBLT) implementation
-- Activation-weighted memory retrieval
-- Confidence tracking and degradation
-- Recency effects and noise modeling
-
-**PessimisticDefender** (Traditional Baseline)
-- Worst-case assumption modeling
-- RESTORE_NODE pathology (41.85% usage)
-- Resource-inefficient reactive strategies
-
-**OptimisticACPDefender** (Novel Approach)
-- Information asymmetry exploitation
-- Strategic deception deployment
-- Cognitive latency arbitrage
-- Memory poisoning via confidence reduction
-
-**NetworkEnvironment**
-- Dynamic network simulation
-- Cognitive latency window implementation
-- Multi-phase execution timeline
-- Comprehensive metrics tracking
-
-### Version 3.0 Enhancements
-- **ConfigurablePessimisticDefender**: Traditional defense with vulnerability distributions
-- **ConfigurableACPDefender**: ACP with adjustable deception strength
-- **ConfigurableAttacker**: Variable learning rates and adaptation speeds
-- **ConfigurableNetworkEnvironment**: Scalable network generation (Erdős-Rényi and Barabási-Albert models)
-
----
-
-## 📈 Output Analysis
-
-### Generated Files
-1. **`power_analysis_results.png`**
-   - High-resolution publication figure (300 DPI)
-   - 8-panel comprehensive analysis
-   - Statistical power analysis with CIs
-   - Action distribution comparisons
-   - Thesis validation summary
-
-2. **`power_analysis_results.pkl`**
-   - Complete results data package
-   - Raw episode-level results
-   - Analysis metadata and configuration
-   - Reproducible research artifact
-
-### Key Visualizations
-- Cumulative reward trajectories
-- Distribution comparisons with confidence intervals
-- Action distribution analysis (highlighting RESTORE_NODE)
-- Attacker confidence degradation over time
-- Cognitive latency exploitation timeline
-- Statistical significance testing results
-
----
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-**ModuleNotFoundError**
-```bash
-# Install missing packages
-pip install numpy scipy networkx matplotlib pandas
-
-# Or use Python module
-python -m pip install numpy scipy networkx matplotlib pandas
-```
-
-**Permission Denied**
-```bash
-# Install for current user only
-pip install --user numpy scipy networkx matplotlib pandas
-```
-
-**Multiple Python Versions**
-```bash
-# Use specific Python version
-python3 -m pip install numpy scipy networkx matplotlib pandas
-python3 acp_parallel_power_analysis.py
-```
-
-### Platform-Specific Guides
-- **Windows**: See [`QUICK_START_WINDOWS.md`](QUICK_START_WINDOWS.md)
-- **Linux/Mac**: See [`SETUP_GUIDE.md`](SETUP_GUIDE.md)
-
----
-
-## 🤖 AI-Assisted Development Integration
-
-### Claude Code Playbook Integration (Optional)
-
-This project can be enhanced with AI-assisted development using the **Claude Code Playbook**:
-
-- **Token-efficient workflows** - 67% reduction in conversation turns
-- **Specialized skills** for Python scientific computing and refactoring
-- **Modern architecture patterns** and best practices
-- **Session management protocols** optimized for Claude Pro
-
-### Quick Start with Claude Code
-
-1. **Clone the playbook:**
-   ```bash
-   git clone https://github.com/dyb5784/claude-code-playbook.git
-   ```
-
-2. **Copy templates to your project:**
-   ```bash
-   cp claude-code-playbook/templates/CLAUDE.md.template ./CLAUDE.md
-   cp claude-code-playbook/templates/.cursorrules.template ./.cursorrules
-   ```
-
-3. **Customize the templates** for your project needs
-
-4. **Start using Claude Code:**
-   ```bash
-   /clear
-   claude skills refactoring qnew
-   ```
-
-**Learn more:** See [docs/CLAUDE_CODE_INTEGRATION.md](docs/CLAUDE_CODE_INTEGRATION.md) for complete documentation
-
-**Repository:** https://github.com/dyb5784/claude-code-playbook
-
----
-
-## 📚 Citation
-
-If you use this simulation in your research, please cite:
-
-```bibtex
-@software{acp_simulation_2025,
-  title={Asymmetric Cognitive Projection Simulation: Beyond Paralysis},
-  author={dyb},
-  year={2025},
-  month={December},
-  version={3.0},
-  url={https://github.com/dyb5784/acp-simulation}
-}
-```
-
----
-
-## 🎓 Research Context
-
-This simulation validates the ACP framework proposed in "Beyond Paralysis: Robust Defense Against Cognitive Attackers," demonstrating that strategic optimism and information asymmetry exploitation can significantly outperform traditional worst-case defensive strategies against instance-based learning attackers.
-
-**Key Insight**: By exploiting the cognitive processing delay inherent in IBLT-based attackers, defenders can deploy cheap deception that poisons attacker memory while avoiding expensive reactive measures.
-
----
+### Budget Tips
+- Run `/cost` every 3 prompts
+- Reset context (`/clear` + catchup) every 5-7 prompts
+- Load skills once per session
+- Batch related work together
+
+## 🎓 Learning Path
+
+### Beginner (Sessions 1-2)
+1. Read `.claude/skills/README.md` to understand available skills
+2. Run `qnew` workflow to start
+3. Run `triage` to understand the codebase
+4. Practice `/clear` + `catchup` protocol
+
+### Intermediate (Sessions 3-10)
+1. Use `extract` workflow to decompose components
+2. Apply Python scientific patterns for vectorization
+3. Use `qplan` before major changes
+4. Track progress systematically
+
+### Advanced (Sessions 10+)
+1. Use `qcode` for batch operations
+2. Design custom refactoring strategies
+3. Optimize simulation performance
+4. Contribute improvements to skills
+
+## 📚 Key Documents
+
+- **[Skills README](.claude/skills/README.md)** ⭐ Navigation hub for all skills
+- **[Python Scientific Skill](.claude/skills/python-scientific/SKILL.md)** - NumPy, reproducibility, performance
+- **[Refactoring Skill](.claude/skills/refactoring/SKILL.md)** - Code organization and workflows
+- **[Getting Started](.claude/GETTING_STARTED.md)** - Detailed setup guide
+- **[Workflow Guide](.claude/WORKFLOW_GUIDE.md)** - Comprehensive workflow docs
+
+## 🎯 ACP Simulation Priorities
+
+Based on technical debt analysis, focus on:
+
+1. **NetworkEnvironment class** (330 lines)
+   - God object with multiple responsibilities
+   - Use: extract workflow + Python scientific patterns
+   - Target: GraphTopology, NodeStateManager, ActionExecutor components
+
+2. **run_corrected_experiment()** (186 lines)
+   - Monolithic orchestration function
+   - Use: extract workflow + configuration patterns
+   - Target: Focused orchestration components
+
+3. **Agent decision logic**
+   - Performance bottleneck
+   - Use: Python scientific patterns
+   - Target: Vectorized batch processing
+
+## ✅ Success Criteria
+
+Your refactoring is successful when:
+- ✅ All tests pass (100% pass rate maintained)
+- ✅ Type hints added with numpy.typing
+- ✅ Reproducibility verified (same seed = same results)
+- ✅ Performance improved or maintained
+- ✅ Code follows single-responsibility principle
+- ✅ NumPy-style docstrings added
+- ✅ Technical debt reduced
+
+## 🆘 Troubleshooting
+
+### "Workflow not found"
+- Ensure you're viewing files with `.claude/skills/` prefix
+- Check file paths: `ls .claude/skills/refactoring/workflows/`
+
+### High token usage
+- Use `/clear` + `catchup` more frequently (every 5-7 prompts)
+- Don't reload skills unnecessarily
+- Focus on one component at a time
+
+### Tests failing after refactoring
+- STOP immediately
+- Identify the breaking change
+- Fix before proceeding
+- Never commit with failing tests
+
+### Context seems lost
+- Run: `/clear` then view `.claude/skills/refactoring/workflows/catchup.md`
+- The catchup workflow will restore full context
 
 ## 📞 Support
 
-For issues, questions, or contributions:
-1. Check [`INSTALLATION_FIX.md`](INSTALLATION_FIX.md) for common problems
-2. Review [`SETUP_GUIDE.md`](SETUP_GUIDE.md) for detailed instructions
-3. Run `python check_setup.py` to verify your installation
-4. See [`v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/COMPREHENSIVE_GUIDE.md`](v3-Claude-Windows-Parameters-Scaled-agents-ACP-simulation/COMPREHENSIVE_GUIDE.md) for v3.0 parameter documentation
+1. Start with: `.claude/skills/README.md`
+2. Check relevant skill documentation
+3. Use `qnew` workflow to refresh context
+4. Review `WORKFLOW_GUIDE.md` for detailed workflows
+
+## 🔄 Version
+
+- **Playbook Version**: 4.0.0
+- **Date**: December 18, 2024
+- **Project**: ACP Simulation
+- **Status**: ✅ Configured and Ready
 
 ---
 
-**Version**: 4.0.0
-**Date**: December 11, 2025
-**Status**: ✅ Production Ready
-**Platform**: Cross-platform (Windows, Linux, macOS)
-**License**: MIT
+**Next Step:** Read [`.claude/skills/README.md`](.claude/skills/README.md) to understand available skills and choose your starting point.
