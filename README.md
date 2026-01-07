@@ -2,7 +2,10 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
+[![CI](https://github.com/chokmah-me/acp-simulation/actions/workflows/ci.yml/badge.svg)](https://github.com/chokmah-me/acp-simulation/actions/workflows/ci.yml)
+[![Codecov](https://codecov.io/gh/chokmah-me/acp-simulation/branch/master/graph/badge.svg)](https://codecov.io/gh/chokmah-me/acp-simulation)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Version](https://img.shields.io/badge/version-4.1.0-blue.svg)](https://github.com/chokmah-me/acp-simulation/releases/tag/v4.1.0)
 
 Asymmetric Cognitive Projection (ACP) simulation framework for validating strategic cybersecurity defense mechanisms against instance-based learning attackers.
 
@@ -30,7 +33,7 @@ This framework models cognitive attacker-defender dynamics on enterprise network
 
 ```bash
 # Clone repository
-git clone https://github.com/dyb5784/acp-simulation.git
+git clone https://github.com/chokmah-me/acp-simulation.git
 cd acp-simulation
 
 # Install dependencies
