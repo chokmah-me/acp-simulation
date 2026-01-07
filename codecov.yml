@@ -1,0 +1,37 @@
+# Codecov Configuration
+# https://docs.codecov.com/docs/codecov-yaml
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+  status:
+    project:
+      default:
+        target: 80%           # Target 80% coverage (aligns with statistical power requirement)
+        threshold: 2%         # Allow 2% drop before failing
+        if_ci_failed: error   # Fail if CI tests fail
+
+    patch:
+      default:
+        target: 75%           # New code should have 75%+ coverage
+        threshold: 5%
+
+ignore:
+  - "tests/**"               # Don't track test file coverage
+  - "scripts/**"             # Don't track utility scripts
+  - "src/acp_simulation/integration/**"  # Integration modules are tested separately
+  - "**/__pycache__"
+  - "**/*.pyc"
+
+comment:
+  layout: "reach,diff,flags,files,footer"
+  behavior: default
+  require_changes: false
+
+flags:
+  unittests:
+    paths:
+      - src/acp_simulation/
+    carryforward: true        # Carry forward results if upload fails
