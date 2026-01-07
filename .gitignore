@@ -51,3 +51,5 @@ outputs/
 *.pkl
 *.png
 !docs/*.png
+# Claude Code session snapshots
+.session-snapshot.md
