@@ -342,7 +342,7 @@ git config --global user.email "your@email.com"
 git remote -v
 
 # Update if needed
-git remote set-url origin https://github.com/dyb5784/acp-simulation.git
+git remote set-url origin https://github.com/chokmah-me/acp-simulation.git
 ```
 
 ### Getting Help
@@ -436,7 +436,7 @@ git remote set-url origin https://github.com/dyb5784/acp-simulation.git
 
 **Package Version**: 1.0  
 **Playbook Version**: 4.0.0  
-**Repository**: https://github.com/dyb5784/acp-simulation  
+**Repository**: https://github.com/chokmah-me/acp-simulation  
 **Date**: December 18, 2024  
 **Status**: ✅ Ready to Deploy
 

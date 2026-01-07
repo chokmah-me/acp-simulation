@@ -8,7 +8,7 @@ This document describes the AI-assisted development capabilities integrated into
 
 The ACP Simulation project now includes a comprehensive AI-assisted development system that enables token-efficient collaboration with Claude Code for refactoring, code improvement, and maintenance tasks.
 
-**Repository**: https://github.com/dyb5784/acp-simulation
+**Repository**: https://github.com/chokmah-me/acp-simulation
 
 ---
 
@@ -359,7 +359,7 @@ See [`CLAUDE.md`](CLAUDE.md) for:
 ### Step 1: Initial Setup
 ```bash
 # Clone the repository
-git clone https://github.com/dyb5784/acp-simulation.git
+git clone https://github.com/chokmah-me/acp-simulation.git
 cd acp-simulation
 
 # Verify installation
