@@ -9,9 +9,10 @@ This module provides publication-quality plotting functions for:
 - Comprehensive multi-panel figures
 """
 
-from typing import Dict, List, Tuple, Any, Optional
-import numpy as np
+from typing import Any, Dict, List, Optional, Tuple
+
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.gridspec import GridSpec
 from numpy.typing import NDArray
 

@@ -2,10 +2,11 @@
 Tests for simulation runner.
 """
 
-import pytest
 import numpy as np
+import pytest
+
 from acp_simulation import SimulationConfig
-from acp_simulation.simulation import run_single_episode, run_experiment
+from acp_simulation.simulation import run_experiment, run_single_episode
 
 
 class TestSimulationRunner:

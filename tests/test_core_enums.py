@@ -3,7 +3,8 @@ Tests for core enumerations.
 """
 
 import pytest
-from acp_simulation.core.enums import NodeState, ActionType
+
+from acp_simulation.core.enums import ActionType, NodeState
 
 
 class TestNodeState:

@@ -2,11 +2,13 @@
 Tests for core dataclasses.
 """
 
-import pytest
 import json
-import tempfile
 import os
+import tempfile
 from pathlib import Path
+
+import pytest
+
 from acp_simulation.core.dataclasses import Instance, SimulationConfig
 from acp_simulation.core.enums import ActionType
 

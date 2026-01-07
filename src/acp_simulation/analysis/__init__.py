@@ -8,15 +8,15 @@ This module provides:
 """
 
 from .statistics import (
-    calculate_power_analysis,
-    bootstrap_confidence_intervals,
     analyze_experiment_results,
+    bootstrap_confidence_intervals,
+    calculate_power_analysis,
 )
 from .visualization import (
     create_results_figure,
-    plot_reward_comparison,
     plot_action_distribution,
     plot_confidence_degradation,
+    plot_reward_comparison,
 )
 
 __all__ = [

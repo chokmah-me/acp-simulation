@@ -6,14 +6,15 @@ This module provides concrete attacker implementations including:
 - ConfigurableAttacker: Extended version with configurable learning rate
 """
 
-from typing import Dict, List, Set, Tuple, Any
 from collections import defaultdict
+from typing import Any, Dict, List, Set, Tuple
+
 import numpy as np
 from numpy.typing import NDArray
 
-from .base import BaseAttacker
 from ..core.dataclasses import Instance
 from ..core.enums import ActionType
+from .base import BaseAttacker
 
 
 class CognitiveAttacker(BaseAttacker):

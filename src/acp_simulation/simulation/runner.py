@@ -8,23 +8,24 @@ This module provides functions to run ACP experiments including:
 - Result collection and aggregation
 """
 
-from typing import Dict, List, Tuple, Any
+from functools import partial
+from multiprocessing import Pool, cpu_count
+from typing import Any, Dict, List, Tuple
+
 import numpy as np
 from numpy.typing import NDArray
-from multiprocessing import Pool, cpu_count
-from functools import partial
 
-from ..core import SimulationConfig, ActionType
 from ..agents import (
     CognitiveAttacker,
-    PessimisticDefender,
-    OptimisticACPDefender,
+    ConfigurableACPDefender,
     ConfigurableAttacker,
     ConfigurablePessimisticDefender,
-    ConfigurableACPDefender,
+    OptimisticACPDefender,
+    PessimisticDefender,
 )
-from ..environment import NetworkEnvironment, ConfigurableNetworkEnvironment
 from ..analysis import analyze_experiment_results
+from ..core import ActionType, SimulationConfig
+from ..environment import ConfigurableNetworkEnvironment, NetworkEnvironment
 
 
 def run_single_episode(episode_id: int, use_acp: bool, config: SimulationConfig) -> Dict[str, Any]:

@@ -9,6 +9,7 @@ network structures beyond simple random graphs:
 """
 
 from typing import Dict, List, Tuple
+
 import networkx as nx
 import numpy as np
 

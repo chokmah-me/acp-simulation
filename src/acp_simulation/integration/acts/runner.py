@@ -4,14 +4,15 @@ ACTS Test Runner
 Executes ACP simulations from ACTS-generated covering arrays.
 """
 
-import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Any, Optional
-import time
 import json
+import time
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
-from ...simulation import run_single_episode
+import pandas as pd
+
 from ...core import SimulationConfig
+from ...simulation import run_single_episode
 
 
 class ACTSRunner:
@@ -169,7 +170,7 @@ def run_acts_experiment(
     One-stop function that generates covering array and runs all tests.
     """
     # Import here to avoid circular dependency
-    from .generator import ACTSGenerator, ACP_PARAMETERS
+    from .generator import ACP_PARAMETERS, ACTSGenerator
 
     if parameters is None:
         parameters = ACP_PARAMETERS

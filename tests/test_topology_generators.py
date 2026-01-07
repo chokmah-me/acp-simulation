@@ -5,15 +5,15 @@ Validates that hub-spoke and hierarchical topologies are generated correctly
 for  conference submission.
 """
 
-import pytest
 import networkx as nx
 import numpy as np
+import pytest
 
 from src.acp_simulation.environment.topology_generators import (
-    generate_hub_spoke_topology,
-    generate_hierarchical_topology,
-    calculate_topology_metrics,
     assign_vulnerability_by_topology,
+    calculate_topology_metrics,
+    generate_hierarchical_topology,
+    generate_hub_spoke_topology,
 )
 
 

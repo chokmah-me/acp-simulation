@@ -9,9 +9,9 @@ This module provides:
 """
 
 from .runner import (
-    run_single_episode,
     run_experiment,
     run_experiment_parallel,
+    run_single_episode,
 )
 
 __all__ = [

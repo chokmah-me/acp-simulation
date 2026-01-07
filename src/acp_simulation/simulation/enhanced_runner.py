@@ -8,17 +8,18 @@ Implements techniques to improve statistical power and effect size detection:
 - Fine-grained metrics tracking
 """
 
-from typing import Dict, List, Tuple, Any, Optional
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 from numpy.typing import NDArray
-from dataclasses import dataclass
 
-from ..core import SimulationConfig, ActionType
 from ..agents import (
+    ConfigurableACPDefender,
     ConfigurableAttacker,
     ConfigurablePessimisticDefender,
-    ConfigurableACPDefender,
 )
+from ..core import ActionType, SimulationConfig
 from ..environment.network_enhanced import EnhancedNetworkEnvironment
 
 

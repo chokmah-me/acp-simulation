@@ -4,11 +4,12 @@ ACTS Covering Array Generator
 Generates combinatorial test suites using NIST ACTS tool.
 """
 
-from dataclasses import dataclass
-from typing import Dict, List, Any, Optional
 import subprocess
 import tempfile
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 import pandas as pd
 
 from ...core import SimulationConfig

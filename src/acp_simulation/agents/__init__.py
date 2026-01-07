@@ -6,13 +6,13 @@ This module provides base classes and concrete implementations for:
 - Defenders (Pessimistic and ACP strategies)
 """
 
-from .base import BaseAttacker, BaseDefender
 from .attacker import CognitiveAttacker, ConfigurableAttacker
+from .base import BaseAttacker, BaseDefender
 from .defender import (
-    PessimisticDefender,
-    OptimisticACPDefender,
-    ConfigurablePessimisticDefender,
     ConfigurableACPDefender,
+    ConfigurablePessimisticDefender,
+    OptimisticACPDefender,
+    PessimisticDefender,
 )
 
 __all__ = [

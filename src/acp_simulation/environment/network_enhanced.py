@@ -8,17 +8,18 @@ This module extends the base network environment to support:
 - Network structure metrics calculation
 """
 
-from typing import Dict, List, Set, Tuple, Any, Optional
-import numpy as np
-import networkx as nx
+from typing import Any, Dict, List, Optional, Set, Tuple
 
-from ..core.enums import ActionType, NodeState
+import networkx as nx
+import numpy as np
+
 from ..agents.base import BaseAttacker, BaseDefender
+from ..core.enums import ActionType, NodeState
 from .topology_generators import (
-    generate_hub_spoke_topology,
-    generate_hierarchical_topology,
-    calculate_topology_metrics,
     assign_vulnerability_by_topology,
+    calculate_topology_metrics,
+    generate_hierarchical_topology,
+    generate_hub_spoke_topology,
 )
 
 

@@ -15,15 +15,16 @@ Author: dyb
 Date: December 09, 2025
 """
 
-import numpy as np
-import networkx as nx
-import matplotlib.pyplot as plt
+import time
 from collections import defaultdict, deque
-from typing import Dict, List, Tuple, Optional, Set
 from dataclasses import dataclass
 from enum import Enum
+from typing import Dict, List, Optional, Set, Tuple
+
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
 from scipy import stats
-import time
 
 # ============================================================================
 # CORE DATA STRUCTURES

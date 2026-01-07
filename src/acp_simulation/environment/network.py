@@ -9,12 +9,13 @@ This module provides the simulation environment including:
 - Action execution
 """
 
-from typing import Dict, List, Set, Tuple, Any, Optional
-import numpy as np
-import networkx as nx
+from typing import Any, Dict, List, Optional, Set, Tuple
 
-from ..core.enums import ActionType, NodeState
+import networkx as nx
+import numpy as np
+
 from ..agents.base import BaseAttacker, BaseDefender
+from ..core.enums import ActionType, NodeState
 
 
 class NetworkEnvironment:

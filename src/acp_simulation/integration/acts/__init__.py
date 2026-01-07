@@ -5,8 +5,7 @@ Integration with NIST Advanced Combinatorial Testing System (ACTS)
 for generating minimal test suites that achieve t-way combinatorial coverage.
 """
 
-from .generator import ACTSGenerator, ACTSParameter, ACTSConstraint, ACP_PARAMETERS, ACP_CONSTRAINTS
-
+from .generator import ACP_CONSTRAINTS, ACP_PARAMETERS, ACTSConstraint, ACTSGenerator, ACTSParameter
 from .runner import ACTSRunner, run_acts_experiment
 
 __all__ = [

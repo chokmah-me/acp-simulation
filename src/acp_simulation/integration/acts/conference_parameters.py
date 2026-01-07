@@ -11,14 +11,14 @@ This configuration supports comprehensive validation of the conference abstract 
 """
 
 try:
-    from .generator import ACTSParameter, ACTSConstraint
+    from .generator import ACTSConstraint, ACTSParameter
 except ImportError:
     # For direct execution
     import sys
     from pathlib import Path
 
     sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
-    from src.acp_simulation.integration.acts.generator import ACTSParameter, ACTSConstraint
+    from src.acp_simulation.integration.acts.generator import ACTSConstraint, ACTSParameter
 
 
 # Enhanced parameter space for conference validation

@@ -6,7 +6,8 @@ defining common interfaces and shared functionality.
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, List, Set, Any
+from typing import Any, Dict, List, Set
+
 import numpy as np
 from numpy.typing import NDArray
 

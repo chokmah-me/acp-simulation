@@ -3,8 +3,8 @@ Data classes for ACP simulation data structures.
 """
 
 from dataclasses import dataclass, field
-from typing import Tuple
 from enum import Enum
+from typing import Tuple
 
 from .enums import ActionType
 

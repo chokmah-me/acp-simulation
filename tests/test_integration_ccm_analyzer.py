@@ -2,10 +2,11 @@
 Tests for CCM Analyzer Module
 """
 
-import pytest
-import pandas as pd
-from pathlib import Path
 import tempfile
+from pathlib import Path
+
+import pandas as pd
+import pytest
 
 from acp_simulation.integration.ccm.analyzer import CCMAnalyzer
 
