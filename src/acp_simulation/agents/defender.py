@@ -122,12 +122,9 @@ class PessimisticDefender(BaseDefender):
             Selected defensive action
         """
         compromised = [n for n, s in self.node_states.items() if s == NodeState.COMPROMISED]
-        alert_level = state.get("alert_level", 0)
-        time_step = state.get("time", 0)
 
         # CRITICAL: Be pessimistic/paranoid even WITHOUT visible compromise
         # Traditional defenders assume worst-case: "Attacker might be present but undetected"
-        perceived_threat = max(len(compromised), alert_level * 10, time_step / 50)
 
         # Roll for action based on RESTORE_NODE probability
         roll = np.random.random()

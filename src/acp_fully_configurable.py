@@ -22,21 +22,16 @@ import pickle
 # Import core classes
 import sys
 import time
-from collections import defaultdict, deque
-from dataclasses import dataclass
-from enum import Enum
-from functools import partial
+from collections import defaultdict
 from multiprocessing import Pool, cpu_count
-from pathlib import Path
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Set, Tuple
 
-import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 from scipy import stats
 
 sys.path.insert(0, ".")
-from acp_corrected_final import (
+from acp_corrected_final import (  # noqa: E402
     ActionType,
     CognitiveAttacker,
     Instance,
@@ -591,19 +586,19 @@ def main():
 Examples:
   # Basic run with 1000 episodes
   python %(prog)s --num-episodes 1000
-  
+
   # Sensitivity analysis: vary ACP strength
   python %(prog)s --acp-strength 0.5 --num-episodes 5000
-  
+
   # Large network simulation
   python %(prog)s --num-nodes 500 --connectivity 0.4 --num-episodes 2000
-  
+
   # High precision with 99%% CI
   python %(prog)s --confidence-level 0.99 --bootstrap-samples 50000
-  
+
   # Fast attacker learning
   python %(prog)s --learning-rate 2.0 --num-episodes 5000
-  
+
   # Bimodal vulnerability distribution
   python %(prog)s --vulnerability-distribution bimodal --num-episodes 5000
         """,
@@ -758,7 +753,7 @@ Examples:
     pa = analysis["power_analysis"]
     ci = analysis["confidence_intervals"]
 
-    print(f"Configuration Parameters:")
+    print("Configuration Parameters:")
     print(f"  • ACP Strength: {config['acp_strength']:.2f}")
     print(f"  • Network Size: {config['num_nodes']} nodes")
     print(f"  • Connectivity: {config['connectivity']:.2f}")
@@ -767,12 +762,14 @@ Examples:
     print(f"  • Confidence Level: {config['confidence_level']*100:.0f}%")
     print()
 
-    print(f"Statistical Results:")
+    print("Statistical Results:")
     print(
-        f"  • ACP Mean: {analysis['acp_mean']:.2f} [{ci['mean_acp_ci'][0]:.2f}, {ci['mean_acp_ci'][1]:.2f}]"
+        f"  • ACP Mean: {analysis['acp_mean']:.2f} "
+        f"[{ci['mean_acp_ci'][0]:.2f}, {ci['mean_acp_ci'][1]:.2f}]"
     )
     print(
-        f"  • Traditional Mean: {analysis['traditional_mean']:.2f} [{ci['mean_traditional_ci'][0]:.2f}, {ci['mean_traditional_ci'][1]:.2f}]"
+        f"  • Traditional Mean: {analysis['traditional_mean']:.2f} "
+        f"[{ci['mean_traditional_ci'][0]:.2f}, {ci['mean_traditional_ci'][1]:.2f}]"
     )
     print(f"  • Improvement: {analysis['percent_improvement']:.1f}%")
     print(

@@ -8,13 +8,13 @@ This module provides:
 - Statistical significance testing
 """
 
-from typing import Any, Dict, Tuple
+from typing import Any, Dict
 
 import numpy as np
 from numpy.typing import NDArray
 from scipy import stats
 
-from ..core.types import ConfidenceInterval, EffectSize, Power, PValue
+from ..core.types import ConfidenceInterval
 
 
 def calculate_power_analysis(

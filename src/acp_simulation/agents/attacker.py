@@ -7,7 +7,7 @@ This module provides concrete attacker implementations including:
 """
 
 from collections import defaultdict
-from typing import Any, Dict, List, Set, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
 from numpy.typing import NDArray

@@ -9,14 +9,11 @@ This module provides publication-quality plotting functions for:
 - Comprehensive multi-panel figures
 """
 
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.gridspec import GridSpec
 from numpy.typing import NDArray
-
-from ..core.enums import ActionType
 
 
 def create_results_figure(
@@ -281,29 +278,40 @@ def create_results_figure(
     ax7.axis("off")
 
     # Calculate key metrics
-    restore_trad = traditional_distribution.get("RESTORE_NODE", 0) * 100
-    restore_acp = acp_distribution.get("RESTORE_NODE", 0) * 100
+    restore_trad = trad_counts.get("RESTORE_NODE", 0) * 100
+    restore_acp = acp_counts.get("RESTORE_NODE", 0) * 100
 
     conf_degradation = analysis.get("confidence_degradation", 0)
 
+    # Pre-calculate conditional strings to avoid backslash in f-strings
+    sig_status = '✅ (p < 0.05)' if pa['p_value'] < 0.05 else '❌ (p >= 0.05)'
+    effect_status = '✅ (Large effect)' if abs(pa['cohen_d']) > 0.8 else '❌ (Small effect)'
+    restore_status = '✅ VALIDATED' if restore_trad > 30 else '⚠️ PARTIAL'
+    conf_status = '✅ VALIDATED' if conf_degradation > 15 else '⚠️ PARTIAL'
+    validation_status = (
+        '✅ ALL THESIS CLAIMS VALIDATED'
+        if pa['p_value'] < 0.05 and abs(pa['cohen_d']) > 0.8
+        else '⚠️ PARTIAL VALIDATION'
+    )
+
     # Create summary text
     summary = f"""
-╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
-║                                THESIS VALIDATION SUMMARY                                          ║
-╚══════════════════════════════════════════════════════════════════════════════════════════════════╝
+╔═════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                THESIS VALIDATION SUMMARY                                         ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════╝
 
 ✅ CLAIM 1: Reward Delta (ACP Significantly Outperforms)
    • ACP Mean Reward: {analysis['acp_mean']:.2f} ± {analysis['acp_std']:.2f}
    • Traditional Mean Reward: {analysis['traditional_mean']:.2f} ± {analysis['traditional_std']:.2f}
    • Delta: {analysis['delta']:.2f} points ({analysis['percent_improvement']:.1f}% improvement)
-   • Statistical Significance: p = {pa['p_value']:.2e} {'✅ (p < 0.05)' if pa['p_value'] < 0.05 else '❌ (p >= 0.05)'}
-   • Effect Size: Cohen's d = {pa['cohen_d']:.2f} {'✅ (Large effect)' if abs(pa['cohen_d']) > 0.8 else '❌ (Small effect)'}
+   • Statistical Significance: p = {pa['p_value']:.2e} {sig_status}
+   • Effect Size: Cohen's d = {pa['cohen_d']:.2f} {effect_status}
 
 ✅ CLAIM 2: Restore Node Pathology (Traditional Overuses Expensive Actions)
    • Traditional RESTORE_NODE usage: {restore_trad:.2f}%
    • ACP RESTORE_NODE usage: {restore_acp:.2f}%
    • Reduction: {restore_trad - restore_acp:.2f} percentage points
-   • Status: {'✅ VALIDATED' if restore_trad > 30 else '⚠️ PARTIAL'}
+   • Status: {restore_status}
 
 ✅ CLAIM 3: Cognitive Latency Arbitrage (Exploit Attacker Processing Delay)
    • Mechanism: Defender acts during attacker's cognitive processing window
@@ -313,13 +321,13 @@ def create_results_figure(
    • Attacker confidence vs ACP: {analysis.get('acp_attacker_confidence', 0):.3f}
    • Attacker confidence vs Traditional: {analysis.get('traditional_attacker_confidence', 1):.3f}
    • Confidence degradation: {conf_degradation:.1f}%
-   • Status: {'✅ VALIDATED' if conf_degradation > 15 else '⚠️ PARTIAL'}
+   • Status: {conf_status}
 
-╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
-║                                    CONCLUSIONS                                                    ║
-╚══════════════════════════════════════════════════════════════════════════════════════════════════╝
+╔═════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                    CONCLUSIONS                                                   ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════╝
 
-{'✅ ALL THESIS CLAIMS VALIDATED' if pa['p_value'] < 0.05 and abs(pa['cohen_d']) > 0.8 else '⚠️ PARTIAL VALIDATION'}
+{validation_status}
 
 ACP demonstrates significant strategic advantages over traditional pessimistic defense:
 • {analysis['percent_improvement']:.1f}% performance improvement

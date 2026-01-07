@@ -8,9 +8,6 @@ defining common interfaces and shared functionality.
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Set
 
-import numpy as np
-from numpy.typing import NDArray
-
 from ..core.enums import ActionType
 
 
