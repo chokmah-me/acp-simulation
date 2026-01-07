@@ -99,7 +99,7 @@ Before deploying, verify:
 - [ ] CHANGELOG.md is comprehensive
 
 ### Repository Ready
-- [ ] You have access to https://github.com/dyb5784/acp-simulation
+- [ ] You have access to https://github.com/chokmah-me/acp-simulation
 - [ ] Repository is cloned locally at `G:\My Drive\acp-simulation`
 - [ ] You're on the correct branch (feat/acts-integration or create new)
 - [ ] You have push permissions
@@ -142,7 +142,7 @@ Before deploying, verify:
 
 ### Step 4: Verify on GitHub
 After successful push:
-1. Visit: https://github.com/dyb5784/acp-simulation
+1. Visit: https://github.com/chokmah-me/acp-simulation
 2. Verify `.claude/` directory is visible
 3. Check README.md updated correctly
 4. Verify all 17+ files committed
@@ -287,10 +287,10 @@ git push
 **Solution**: Check GitHub authentication
 ```bash
 # For HTTPS
-git remote set-url origin https://github.com/dyb5784/acp-simulation.git
+git remote set-url origin https://github.com/chokmah-me/acp-simulation.git
 
 # For SSH (if configured)
-git remote set-url origin git@github.com:dyb5784/acp-simulation.git
+git remote set-url origin git@github.com:chokmah-me/acp-simulation.git
 ```
 
 ---

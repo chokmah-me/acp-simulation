@@ -23,7 +23,7 @@ Create a shorter, branch-aligned README.md that focuses on the refactored v4.0.0
 
 **Production-ready Python package for Asymmetric Cognitive Projection cybersecurity simulation**
 
-[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](https://github.com/dyb5784/acp-simulation/releases/tag/v4.0.0)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](https://github.com/chokmah-me/acp-simulation/releases/tag/v4.0.0)
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -78,7 +78,7 @@ This is the **RooK2-refactor-core-module** branch - a complete architectural ove
 
 ### From Source (Development)
 ```bash
-git clone -b RooK2-refactor-core-module https://github.com/dyb5784/acp-simulation.git
+git clone -b RooK2-refactor-core-module https://github.com/chokmah-me/acp-simulation.git
 cd acp-simulation
 pip install -e .
 ```
@@ -116,7 +116,7 @@ pytest tests/ -v
   author={dyb},
   year={2025},
   version={4.0},
-  url={https://github.com/dyb5784/acp-simulation}
+  url={https://github.com/chokmah-me/acp-simulation}
 }
 ```
 

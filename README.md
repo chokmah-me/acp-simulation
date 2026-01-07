@@ -272,8 +272,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-- **Repository**: https://github.com/dyb5784/acp-simulation
-- **Issues**: https://github.com/dyb5784/acp-simulation/issues
+- **Repository**: https://github.com/chokmah-me/acp-simulation
+- **Issues**: https://github.com/chokmah-me/acp-simulation/issues
 
 ## 🔖 Citation
 
@@ -283,7 +283,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
   title = {ACP Simulation Framework: Enterprise Network Topologies for Cognitive Defense Validation},
   year = {2025},
   version = {4.1.0},
-  url = {https://github.com/dyb5784/acp-simulation}
+  url = {https://github.com/chokmah-me/acp-simulation}
 }
 ```
 

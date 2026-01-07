@@ -241,7 +241,7 @@ All changes validated against:
 ### References
 - Claude Code Playbook Version: 4.0.0
 - Integration Date: December 18, 2024
-- Repository: https://github.com/dyb5784/acp-simulation
+- Repository: https://github.com/chokmah-me/acp-simulation
 
 ---
 

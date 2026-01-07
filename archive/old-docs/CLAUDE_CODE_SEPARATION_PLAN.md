@@ -303,7 +303,7 @@ Keep history in ACP, start fresh in new repo but reference original commits:
 # In new repo's README.md, add:
 # "This playbook was originally developed for the ACP Simulation project.
 # Original development history available at:
-# https://github.com/dyb5784/acp-simulation (commits up to 2025-12-11)"
+# https://github.com/chokmah-me/acp-simulation (commits up to 2025-12-11)"
 ```
 
 **Recommendation**: Option B (Clean Break) for simplicity, as the playbook will evolve independently.

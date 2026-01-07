@@ -247,7 +247,7 @@ gh pr create \
 
 ### Option 2: GitHub Web Interface
 1. Push branch to GitHub
-2. Navigate to https://github.com/dyb5784/acp-simulation
+2. Navigate to https://github.com/chokmah-me/acp-simulation
 3. Click "Compare & pull request"
 4. Use PR description below
 5. Request review if needed
