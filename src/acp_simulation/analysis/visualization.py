@@ -284,14 +284,14 @@ def create_results_figure(
     conf_degradation = analysis.get("confidence_degradation", 0)
 
     # Pre-calculate conditional strings to avoid backslash in f-strings
-    sig_status = '✅ (p < 0.05)' if pa['p_value'] < 0.05 else '❌ (p >= 0.05)'
-    effect_status = '✅ (Large effect)' if abs(pa['cohen_d']) > 0.8 else '❌ (Small effect)'
-    restore_status = '✅ VALIDATED' if restore_trad > 30 else '⚠️ PARTIAL'
-    conf_status = '✅ VALIDATED' if conf_degradation > 15 else '⚠️ PARTIAL'
+    sig_status = "✅ (p < 0.05)" if pa["p_value"] < 0.05 else "❌ (p >= 0.05)"
+    effect_status = "✅ (Large effect)" if abs(pa["cohen_d"]) > 0.8 else "❌ (Small effect)"
+    restore_status = "✅ VALIDATED" if restore_trad > 30 else "⚠️ PARTIAL"
+    conf_status = "✅ VALIDATED" if conf_degradation > 15 else "⚠️ PARTIAL"
     validation_status = (
-        '✅ ALL THESIS CLAIMS VALIDATED'
-        if pa['p_value'] < 0.05 and abs(pa['cohen_d']) > 0.8
-        else '⚠️ PARTIAL VALIDATION'
+        "✅ ALL THESIS CLAIMS VALIDATED"
+        if pa["p_value"] < 0.05 and abs(pa["cohen_d"]) > 0.8
+        else "⚠️ PARTIAL VALIDATION"
     )
 
     # Create summary text
