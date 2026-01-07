@@ -228,7 +228,7 @@ def calculate_topology_metrics(G: nx.Graph) -> Dict[str, float]:
     # Assortativity (do high-degree nodes connect to other high-degree nodes?)
     try:
         metrics["assortativity"] = nx.degree_assortativity_coefficient(G)
-    except:
+    except Exception:
         metrics["assortativity"] = 0.0  # Can fail for certain graph types
 
     return metrics

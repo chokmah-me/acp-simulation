@@ -2,7 +2,7 @@
 LEARNING RATE PARAMETER SWEEP ANALYSIS
 Investigating how attacker learning speed affects ACP deception effectiveness
 
-Key Research Question: How does attacker learning rate impact the effectiveness 
+Key Research Question: How does attacker learning rate impact the effectiveness
 of ACP deception strategies in degrading attacker confidence and improving defense?
 
 Tested learning_rate values: [0.2, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0]

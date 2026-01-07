@@ -346,7 +346,6 @@ def explain_in_plain_english(analysis, acp_results, traditional_results):
 
 
 if __name__ == "__main__":
-    import sys
 
     # Get filename from command line or use default
     pkl_file = sys.argv[1] if len(sys.argv) > 1 else "power_analysis_results.pkl"

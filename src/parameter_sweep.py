@@ -5,7 +5,7 @@ Automated sensitivity analysis across multiple parameter configurations
 Enables systematic exploration of:
 - ACP strength variations
 - Network size scaling
-- Connectivity effects  
+- Connectivity effects
 - Learning rate impacts
 - Vulnerability distribution comparisons
 
