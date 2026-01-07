@@ -1,15 +1,7 @@
 [flake8]
 max-line-length = 100
-extend-ignore =
-    E203,  # Whitespace before ':' (Black compatibility)
-    W503,  # Line break before binary operator (Black compatibility)
-    F401,  # Unused imports (common in research code)
-    F841,  # Unused variables (common in research code)
-    W293,  # Blank line contains whitespace
-    E402,  # Module level import not at top of file
-    F541,  # F-string without placeholders
-    E501,  # Line too long (handled by Black)
-    F821   # Undefined name (handled by mypy)
+# Ignore codes for Black compatibility and research code patterns
+extend-ignore = E203,W503,F401,F841,W293,E402,F541,E501,F821
 exclude =
     .git,
     __pycache__,
@@ -18,5 +10,4 @@ exclude =
     build,
     dist,
     *.egg-info,
-    # Legacy reference implementation - do not modify (CLAUDE.md)
     src/acp_corrected_final.py
