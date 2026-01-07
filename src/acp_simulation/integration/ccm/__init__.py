@@ -7,6 +7,4 @@ for analyzing test suite coverage and identifying missing combinations.
 
 from .analyzer import CCMAnalyzer
 
-__all__ = [
-    'CCMAnalyzer'
-]
+__all__ = ["CCMAnalyzer"]

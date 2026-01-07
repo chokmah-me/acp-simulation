@@ -8,7 +8,7 @@ from enum import Enum
 class NodeState(Enum):
     """
     Network node states.
-    
+
     Attributes
     ----------
     CLEAN : int
@@ -22,6 +22,7 @@ class NodeState(Enum):
     ISOLATED : int
         Node has been isolated from network
     """
+
     CLEAN = 0
     COMPROMISED = 1
     HONEYPOT = 2
@@ -32,7 +33,7 @@ class NodeState(Enum):
 class ActionType(Enum):
     """
     Available actions for both agents.
-    
+
     Attributes
     ----------
     SCAN : int
@@ -54,11 +55,12 @@ class ActionType(Enum):
     RESTORE_NODE : int
         Defender action: restore node (expensive)
     """
+
     # Attacker actions
     SCAN = 0
     EXPLOIT = 1
     PROPAGATE = 2
-    
+
     # Defender actions
     MONITOR = 3
     PATCH = 4

@@ -5,44 +5,40 @@ Checks if all required packages are installed
 
 import sys
 
+
 def check_dependencies():
     """Check if all required packages are available"""
-    
+
     print("=" * 70)
     print("ACP SIMULATION - DEPENDENCY CHECKER")
     print("=" * 70)
     print()
-    
+
     print(f"Python version: {sys.version}")
     print(f"Python executable: {sys.executable}")
     print()
-    
-    packages = {
-        'numpy': '1.20.0',
-        'scipy': '1.7.0',
-        'networkx': '2.6.0',
-        'matplotlib': '3.4.0'
-    }
-    
+
+    packages = {"numpy": "1.20.0", "scipy": "1.7.0", "networkx": "2.6.0", "matplotlib": "3.4.0"}
+
     print("Checking required packages...")
     print("-" * 70)
-    
+
     missing = []
     installed = []
-    
+
     for package, min_version in packages.items():
         try:
             mod = __import__(package)
-            version = getattr(mod, '__version__', 'unknown')
+            version = getattr(mod, "__version__", "unknown")
             print(f"[OK] {package:15s} {version:15s} (minimum: {min_version})")
             installed.append(package)
         except ImportError:
             print(f"[MISSING] {package:15s} NOT INSTALLED")
             missing.append(package)
-    
+
     print("-" * 70)
     print()
-    
+
     if missing:
         print("[WARNING] MISSING PACKAGES DETECTED")
         print()
@@ -68,6 +64,7 @@ def check_dependencies():
         print("    python acp_parallel_power_analysis.py   (1,000 episodes)")
         print()
         return True
+
 
 if __name__ == "__main__":
     success = check_dependencies()

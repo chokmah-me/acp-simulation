@@ -13,8 +13,9 @@ import networkx as nx
 import numpy as np
 
 
-def generate_hub_spoke_topology(num_nodes: int, hub_ratio: float = 0.1,
-                                connectivity: float = 0.6) -> nx.Graph:
+def generate_hub_spoke_topology(
+    num_nodes: int, hub_ratio: float = 0.1, connectivity: float = 0.6
+) -> nx.Graph:
     """
     Generate a hub-and-spoke (star) network topology.
 
@@ -82,13 +83,14 @@ def generate_hub_spoke_topology(num_nodes: int, hub_ratio: float = 0.1,
             G.add_edge(node1, node2)
 
     # Mark hub nodes as node attribute for vulnerability assignment
-    nx.set_node_attributes(G, {node: (node in hub_nodes) for node in G.nodes()}, 'is_hub')
+    nx.set_node_attributes(G, {node: (node in hub_nodes) for node in G.nodes()}, "is_hub")
 
     return G
 
 
-def generate_hierarchical_topology(num_nodes: int, branching_factor: int = 3,
-                                   depth: int = 3) -> nx.Graph:
+def generate_hierarchical_topology(
+    num_nodes: int, branching_factor: int = 3, depth: int = 3
+) -> nx.Graph:
     """
     Generate a hierarchical (tree) network topology.
 
@@ -131,7 +133,7 @@ def generate_hierarchical_topology(num_nodes: int, branching_factor: int = 3,
     # Calculate optimal depth to approximate num_nodes
     total_nodes = 0
     for d in range(depth):
-        total_nodes += branching_factor ** d
+        total_nodes += branching_factor**d
 
     # Generate balanced tree
     G = nx.balanced_tree(branching_factor, depth - 1, create_using=nx.Graph())
@@ -150,7 +152,7 @@ def generate_hierarchical_topology(num_nodes: int, branching_factor: int = 3,
 
     # Assign levels based on distance from root (node 0)
     levels = nx.single_source_shortest_path_length(G, 0)
-    nx.set_node_attributes(G, levels, 'level')
+    nx.set_node_attributes(G, levels, "level")
 
     # Add cross-level edges for realism (e.g., workstations accessing DMZ services)
     num_cross_edges = max(1, int(G.number_of_nodes() * 0.1))
@@ -201,37 +203,39 @@ def calculate_topology_metrics(G: nx.Graph) -> Dict[str, float]:
     metrics = {}
 
     # Clustering coefficient (high in hub-spoke, low in hierarchical)
-    metrics['clustering_coefficient'] = nx.average_clustering(G)
+    metrics["clustering_coefficient"] = nx.average_clustering(G)
 
     # Path lengths (only for connected graphs)
     if nx.is_connected(G):
-        metrics['average_path_length'] = nx.average_shortest_path_length(G)
-        metrics['diameter'] = nx.diameter(G)
+        metrics["average_path_length"] = nx.average_shortest_path_length(G)
+        metrics["diameter"] = nx.diameter(G)
     else:
         # For disconnected graphs, use largest component
         largest_cc = max(nx.connected_components(G), key=len)
         subgraph = G.subgraph(largest_cc)
-        metrics['average_path_length'] = nx.average_shortest_path_length(subgraph)
-        metrics['diameter'] = nx.diameter(subgraph)
+        metrics["average_path_length"] = nx.average_shortest_path_length(subgraph)
+        metrics["diameter"] = nx.diameter(subgraph)
 
     # Density (edges / possible edges)
-    metrics['density'] = nx.density(G)
+    metrics["density"] = nx.density(G)
 
     # Degree centrality
     degree_centrality = nx.degree_centrality(G)
-    metrics['degree_centrality_max'] = max(degree_centrality.values())
-    metrics['degree_centrality_mean'] = np.mean(list(degree_centrality.values()))
+    metrics["degree_centrality_max"] = max(degree_centrality.values())
+    metrics["degree_centrality_mean"] = np.mean(list(degree_centrality.values()))
 
     # Assortativity (do high-degree nodes connect to other high-degree nodes?)
     try:
-        metrics['assortativity'] = nx.degree_assortativity_coefficient(G)
+        metrics["assortativity"] = nx.degree_assortativity_coefficient(G)
     except:
-        metrics['assortativity'] = 0.0  # Can fail for certain graph types
+        metrics["assortativity"] = 0.0  # Can fail for certain graph types
 
     return metrics
 
 
-def assign_vulnerability_by_topology(G: nx.Graph, distribution: str = 'gradient') -> Dict[int, float]:
+def assign_vulnerability_by_topology(
+    G: nx.Graph, distribution: str = "gradient"
+) -> Dict[int, float]:
     """
     Assign node vulnerabilities based on topology structure.
 
@@ -265,28 +269,28 @@ def assign_vulnerability_by_topology(G: nx.Graph, distribution: str = 'gradient'
     vulnerabilities = {}
 
     # Check if this is a hub-spoke topology
-    if 'is_hub' in G.nodes[0]:
+    if "is_hub" in G.nodes[0]:
         # Hub-spoke topology
         for node in G.nodes():
-            if distribution == 'gradient':
+            if distribution == "gradient":
                 # Hubs are more secure (lower vulnerability)
-                vulnerabilities[node] = 0.2 if G.nodes[node]['is_hub'] else 0.7
-            elif distribution == 'inverse':
+                vulnerabilities[node] = 0.2 if G.nodes[node]["is_hub"] else 0.7
+            elif distribution == "inverse":
                 # Hubs are more vulnerable (insider threat)
-                vulnerabilities[node] = 0.8 if G.nodes[node]['is_hub'] else 0.3
+                vulnerabilities[node] = 0.8 if G.nodes[node]["is_hub"] else 0.3
             else:  # uniform
                 vulnerabilities[node] = 0.5
 
     # Check if this is a hierarchical topology
-    elif 'level' in G.nodes[0]:
+    elif "level" in G.nodes[0]:
         # Hierarchical topology
-        max_level = max(G.nodes[node]['level'] for node in G.nodes())
+        max_level = max(G.nodes[node]["level"] for node in G.nodes())
         for node in G.nodes():
-            level = G.nodes[node]['level']
-            if distribution == 'gradient':
+            level = G.nodes[node]["level"]
+            if distribution == "gradient":
                 # Outer layers (higher level) are more vulnerable
                 vulnerabilities[node] = 0.3 + (level / max_level) * 0.6
-            elif distribution == 'inverse':
+            elif distribution == "inverse":
                 # Core (lower level) is more vulnerable
                 vulnerabilities[node] = 0.8 - (level / max_level) * 0.6
             else:  # uniform

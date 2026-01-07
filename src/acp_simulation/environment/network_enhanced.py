@@ -18,7 +18,7 @@ from .topology_generators import (
     generate_hub_spoke_topology,
     generate_hierarchical_topology,
     calculate_topology_metrics,
-    assign_vulnerability_by_topology
+    assign_vulnerability_by_topology,
 )
 
 
@@ -52,11 +52,15 @@ class EnhancedNetworkEnvironment:
         Calculated topology metrics
     """
 
-    def __init__(self, num_nodes: int = 50, connectivity: float = 0.6,
-                 topology_type: str = 'auto',
-                 vulnerability_distribution: str = 'auto',
-                 latency_window: Tuple[float, float] = (0.3, 0.8),
-                 random_seed: Optional[int] = None):
+    def __init__(
+        self,
+        num_nodes: int = 50,
+        connectivity: float = 0.6,
+        topology_type: str = "auto",
+        vulnerability_distribution: str = "auto",
+        latency_window: Tuple[float, float] = (0.3, 0.8),
+        random_seed: Optional[int] = None,
+    ):
         """
         Initialize enhanced network environment.
 
@@ -109,17 +113,17 @@ class EnhancedNetworkEnvironment:
             ActionType.ISOLATE: 3.0,
             ActionType.DEPLOY_HONEYPOT: 2.0,
             ActionType.RESTORE_NODE: 6.0,  # Most expensive -  abstract shows pessimistic overuse
-            ActionType.ACP_DECEPTION: 1.0
+            ActionType.ACP_DECEPTION: 1.0,
         }
 
         # Metrics tracking
         self.metrics = {
-            'cognitive_latency_exploitations': 0,
-            'acp_deceptions': [],
-            'expensive_actions': [],
-            'restore_node_count': 0,  # Track for  validation
-            'topology_type': self.topology_type,
-            'topology_metrics': self.topology_metrics
+            "cognitive_latency_exploitations": 0,
+            "acp_deceptions": [],
+            "expensive_actions": [],
+            "restore_node_count": 0,  # Track for  validation
+            "topology_type": self.topology_type,
+            "topology_metrics": self.topology_metrics,
         }
 
     def _generate_topology(self) -> nx.Graph:
@@ -131,31 +135,25 @@ class EnhancedNetworkEnvironment:
         nx.Graph
             Generated network graph
         """
-        if self.topology_type == 'auto':
+        if self.topology_type == "auto":
             # Auto-select based on size (legacy behavior)
             if self.num_nodes <= 100:
-                topology = 'erdos_renyi'
+                topology = "erdos_renyi"
             else:
-                topology = 'barabasi_albert'
+                topology = "barabasi_albert"
         else:
             topology = self.topology_type
 
         # Generate based on selected topology
-        if topology == 'hub_spoke':
+        if topology == "hub_spoke":
             G = generate_hub_spoke_topology(
-                self.num_nodes,
-                hub_ratio=0.1,
-                connectivity=self.connectivity
+                self.num_nodes, hub_ratio=0.1, connectivity=self.connectivity
             )
 
-        elif topology == 'hierarchical':
-            G = generate_hierarchical_topology(
-                self.num_nodes,
-                branching_factor=3,
-                depth=3
-            )
+        elif topology == "hierarchical":
+            G = generate_hierarchical_topology(self.num_nodes, branching_factor=3, depth=3)
 
-        elif topology == 'barabasi_albert':
+        elif topology == "barabasi_albert":
             m = max(1, int(self.num_nodes * self.connectivity / 10))
             G = nx.barabasi_albert_graph(self.num_nodes, m, seed=self.random_seed)
 
@@ -176,36 +174,36 @@ class EnhancedNetworkEnvironment:
         """
         Initialize node vulnerabilities based on topology and distribution.
         """
-        if self.vulnerability_distribution == 'auto':
+        if self.vulnerability_distribution == "auto":
             # Auto-select based on topology
-            if self.topology_type in ['hub_spoke', 'hierarchical']:
-                dist = 'gradient'
+            if self.topology_type in ["hub_spoke", "hierarchical"]:
+                dist = "gradient"
             else:
-                dist = 'uniform'
+                dist = "uniform"
         else:
             dist = self.vulnerability_distribution
 
         # Use topology-aware distribution if applicable
-        if dist in ['gradient', 'inverse'] and self.topology_type in ['hub_spoke', 'hierarchical']:
+        if dist in ["gradient", "inverse"] and self.topology_type in ["hub_spoke", "hierarchical"]:
             self.vulnerabilities = assign_vulnerability_by_topology(self.network, dist)
         else:
             # Use uniform or legacy distributions
             n_nodes = len(self.network.nodes())
 
-            if dist == 'uniform':
+            if dist == "uniform":
                 self.vulnerabilities = {node: 0.5 for node in self.network.nodes()}
 
-            elif dist == 'normal':
+            elif dist == "normal":
                 vulns = np.random.normal(0.5, 0.15, n_nodes)
                 vulns = np.clip(vulns, 0.1, 0.9)
                 self.vulnerabilities = {node: v for node, v in zip(self.network.nodes(), vulns)}
 
-            elif dist == 'exponential':
+            elif dist == "exponential":
                 vulns = np.random.exponential(0.3, n_nodes)
                 vulns = np.clip(vulns, 0.1, 0.9)
                 self.vulnerabilities = {node: v for node, v in zip(self.network.nodes(), vulns)}
 
-            elif dist == 'bimodal':
+            elif dist == "bimodal":
                 vulns = []
                 for _ in range(n_nodes):
                     if np.random.random() < 0.5:
@@ -234,12 +232,12 @@ class EnhancedNetworkEnvironment:
 
         # Reset metrics
         self.metrics = {
-            'cognitive_latency_exploitations': 0,
-            'acp_deceptions': [],
-            'expensive_actions': [],
-            'restore_node_count': 0,
-            'topology_type': self.topology_type,
-            'topology_metrics': self.topology_metrics
+            "cognitive_latency_exploitations": 0,
+            "acp_deceptions": [],
+            "expensive_actions": [],
+            "restore_node_count": 0,
+            "topology_type": self.topology_type,
+            "topology_metrics": self.topology_metrics,
         }
 
         return self._get_state()
@@ -254,11 +252,11 @@ class EnhancedNetworkEnvironment:
             State dictionary with network information
         """
         return {
-            'node_states': self.node_states.copy(),
-            'vulnerabilities': self.vulnerabilities.copy(),
-            'time': self.current_time,
-            'network': self.network,
-            'topology_metrics': self.topology_metrics
+            "node_states": self.node_states.copy(),
+            "vulnerabilities": self.vulnerabilities.copy(),
+            "time": self.current_time,
+            "network": self.network,
+            "topology_metrics": self.topology_metrics,
         }
 
     def get_topology_report(self) -> Dict[str, Any]:
@@ -271,27 +269,27 @@ class EnhancedNetworkEnvironment:
             Report with topology metrics and characteristics
         """
         report = {
-            'topology_type': self.topology_type,
-            'num_nodes': self.network.number_of_nodes(),
-            'num_edges': self.network.number_of_edges(),
-            'metrics': self.topology_metrics,
-            'vulnerability_stats': {
-                'mean': np.mean(list(self.vulnerabilities.values())),
-                'std': np.std(list(self.vulnerabilities.values())),
-                'min': min(self.vulnerabilities.values()),
-                'max': max(self.vulnerabilities.values())
-            }
+            "topology_type": self.topology_type,
+            "num_nodes": self.network.number_of_nodes(),
+            "num_edges": self.network.number_of_edges(),
+            "metrics": self.topology_metrics,
+            "vulnerability_stats": {
+                "mean": np.mean(list(self.vulnerabilities.values())),
+                "std": np.std(list(self.vulnerabilities.values())),
+                "min": min(self.vulnerabilities.values()),
+                "max": max(self.vulnerabilities.values()),
+            },
         }
 
         # Add topology-specific information
-        if 'is_hub' in self.network.nodes[0]:
-            num_hubs = sum(1 for n in self.network.nodes() if self.network.nodes[n]['is_hub'])
-            report['hub_count'] = num_hubs
-            report['peripheral_count'] = self.network.number_of_nodes() - num_hubs
+        if "is_hub" in self.network.nodes[0]:
+            num_hubs = sum(1 for n in self.network.nodes() if self.network.nodes[n]["is_hub"])
+            report["hub_count"] = num_hubs
+            report["peripheral_count"] = self.network.number_of_nodes() - num_hubs
 
-        if 'level' in self.network.nodes[0]:
-            levels = [self.network.nodes[n]['level'] for n in self.network.nodes()]
-            report['max_depth'] = max(levels)
-            report['nodes_per_level'] = {level: levels.count(level) for level in set(levels)}
+        if "level" in self.network.nodes[0]:
+            levels = [self.network.nodes[n]["level"] for n in self.network.nodes()]
+            report["max_depth"] = max(levels)
+            report["nodes_per_level"] = {level: levels.count(level) for level in set(levels)}
 
         return report
