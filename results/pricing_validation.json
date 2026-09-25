@@ -1,0 +1,46 @@
+{
+  "episodes": 200,
+  "detection_rate": {
+    "fixed": 0.155,
+    "phase_contingent": 0.62,
+    "paired_diff": {
+      "n": 200,
+      "mean_diff": 0.465,
+      "ci_lo": 0.39,
+      "ci_hi": 0.54,
+      "cohen_d_paired": 0.8784915349147473,
+      "wilcoxon_p": 9.029543994477736e-21
+    }
+  },
+  "detection_delay_windows": {
+    "n_both_detected": 28,
+    "median_fixed": 24.5,
+    "median_phase": 9.0,
+    "paired_diff_phase_minus_fixed": {
+      "n": 28,
+      "mean_diff": -15.071428571428571,
+      "ci_lo": -21.607142857142858,
+      "ci_hi": -9.357142857142858,
+      "cohen_d_paired": -0.8897039105825267,
+      "wilcoxon_p": 5.677342414855957e-06
+    }
+  },
+  "false_positives_per_episode": {
+    "mean_fixed": 0.865,
+    "mean_phase": 0.605,
+    "paired_diff_phase_minus_fixed": {
+      "n": 200,
+      "mean_diff": -0.26,
+      "ci_lo": -0.325,
+      "ci_hi": -0.195,
+      "cohen_d_paired": -0.5627398003185162,
+      "wilcoxon_p": 3.684265188407034e-12
+    }
+  },
+  "config": {
+    "episodes": 200,
+    "windows": 150,
+    "seed": 42,
+    "runtime_s": 15.0
+  }
+}
